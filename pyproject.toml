@@ -1,0 +1,32 @@
+[project]
+name = "amherst-core"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+authors = [
+    { name = "Paw", email = "paw@pawrequest.com" }
+]
+requires-python = ">=3.13"
+dependencies = [
+    "pycommence",
+    "pydantic>=2.12.5",
+]
+
+[project.scripts]
+amherst-core = "amherst_core:main"
+
+[build-system]
+requires = ["uv_build>=0.8.22,<0.9.0"]
+build-backend = "uv_build"
+
+[dependency-groups]
+commence = [
+    "pycommence>=0.2.4",
+]
+dev = [
+    "pytest>=9.0.2",
+]
+
+[tool.uv.sources]
+#shipaw = { path = '../shipaw', editable = true }
+pycommence = { path = '../pycommence', editable = true }

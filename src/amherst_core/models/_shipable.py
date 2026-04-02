@@ -2,15 +2,24 @@ from __future__ import annotations
 
 from abc import ABC, abstractmethod
 
+from pycommence.core.types import CommenceConnection, CommenceDateMaybe, CommencePath, CommenceString
 from pydantic import Field
 
-from amherst_core.commence_types import CommenceConnection, CommenceDate, CommencePath, CommenceString
-from amherst_core.mdls._base import AmherstTable
-from amherst_core.mdls.contact_address import AddressBasic, ContactBasic, FullContact
-from amherst_core.mdls.shipment import ShipmentDetails
+from amherst_core.models._base import AmherstTable
+from amherst_core.models.contact_address import AddressBasic, ContactBasic, FullContact
+from amherst_core.models.shipment_details import ShipmentDetails
 
 
 class AmherstShipableBase(AmherstTable, ABC):
+    delivery_method: CommenceString = Field('', alias='Delivery Method')
+    delivery_contact_business: CommenceString = Field(alias='Delivery Name')
+    delivery_contact_name: CommenceString = Field(alias='Delivery Contact')
+    delivery_contact_email: CommenceString = Field(alias='Delivery Email')
+    delivery_contact_phone: CommenceString = Field(alias='Delivery Telephone')
+
+    delivery_address_str: CommenceString = Field(alias='Delivery Address')
+    delivery_address_pc: CommenceString = Field(alias='Delivery Postcode')
+
     @property
     def delivery_address(self) -> AddressBasic:
         return AddressBasic.from_str_and_pc(self.delivery_address_str, self.delivery_address_pc)
@@ -32,18 +41,9 @@ class AmherstShipableBase(AmherstTable, ABC):
     @abstractmethod
     def shipment(self) -> ShipmentDetails: ...
 
-    delivery_method: CommenceString = Field('', alias='Delivery Method')
-    delivery_contact_business: CommenceString = Field(alias='Delivery Name')
-    delivery_contact_name: CommenceString = Field(alias='Delivery Contact')
-    delivery_contact_email: CommenceString = Field(alias='Delivery Email')
-    delivery_contact_phone: CommenceString = Field(alias='Delivery Telephone')
-
-    delivery_address_str: CommenceString = Field(alias='Delivery Address')
-    delivery_address_pc: CommenceString = Field(alias='Delivery Postcode')
-
 
 class AmherstOrderBase(AmherstShipableBase, ABC):
     customer: CommenceConnection = Field(alias='To Customer')
     status: CommenceString | None = Field(None, alias='Status')
     invoice: CommencePath | None = Field(None, alias='Invoice')
-    order_date: CommenceDate | None = Field(None, alias='Order Date')
+    order_date: CommenceDateMaybe = Field(None, alias='Order Date')

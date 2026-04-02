@@ -1,16 +1,16 @@
 from datetime import date
 from typing import ClassVar
 
+from pycommence.core.types import CSVSpaces, CommenceDateMaybe, CommenceString
 from pydantic import Field
-
-from amherst_core.commence_types import CSVSpaces, CommenceDate, CommenceString
+from pycommence.core.meta import CommenceTable
 from amherst_core.consts_enums import CategoryName
-from amherst_core.mdls._shipable import AmherstShipableBase
-from amherst_core.mdls.shipment import ShipmentDetails
+from amherst_core.models._shipable import AmherstShipableBase
+from amherst_core.models.shipment_details import ShipmentDetails
 from amherst_core.utils.text_and_date import dated_name
 
 
-class AmherstCustomer(AmherstShipableBase):
+class AmherstCustomer(AmherstShipableBase, CommenceTable):
     category: ClassVar[CategoryName] = CategoryName.Customer
 
     delivery_contact_name: CommenceString = Field(alias='Deliv Contact')
@@ -29,7 +29,7 @@ class AmherstCustomer(AmherstShipableBase):
     invoice_postcode: CommenceString = Field('', alias='Invoice Postcode')
     invoice_telephone: CommenceString = Field('', alias='Invoice Telephone')
     primary_email: CommenceString = Field('', alias='Primary Email')
-    date_last_contacted: CommenceDate | None = Field(None, alias='Date Last Contact')
+    date_last_contacted: CommenceDateMaybe = Field(None, alias='Date Last Contact')
 
     hires: CSVSpaces = Field('', alias='Has Hired Hires')
     sales: CSVSpaces = Field('', alias='Involves Sale')
