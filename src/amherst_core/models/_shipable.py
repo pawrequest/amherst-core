@@ -6,7 +6,7 @@ from pycommence.core.types import CommenceConnection, CommenceDateMaybe, Commenc
 from pydantic import Field
 
 from amherst_core.models._base import AmherstTable
-from amherst_core.models.contact_address import AddressBasic, ContactBasic, FullContact
+from amherst_core.models.contact_address import Address, Contact, FullContact
 from amherst_core.models.shipment_details import ShipmentDetails
 
 
@@ -21,12 +21,12 @@ class AmherstShipableBase(AmherstTable, ABC):
     delivery_address_pc: CommenceString = Field(alias='Delivery Postcode')
 
     @property
-    def delivery_address(self) -> AddressBasic:
-        return AddressBasic.from_str_and_pc(self.delivery_address_str, self.delivery_address_pc)
+    def delivery_address(self) -> Address:
+        return Address.from_str_and_pc(self.delivery_address_str, self.delivery_address_pc)
 
     @property
-    def delivery_contact(self) -> ContactBasic:
-        return ContactBasic(
+    def delivery_contact(self) -> Contact:
+        return Contact(
             name=self.delivery_contact_name,
             business=self.delivery_contact_business,
             phone=self.delivery_contact_phone,
@@ -43,7 +43,13 @@ class AmherstShipableBase(AmherstTable, ABC):
 
 
 class AmherstOrderBase(AmherstShipableBase, ABC):
-    customer: CommenceConnection = Field(alias='To Customer')
+    customers: CommenceConnection = Field(alias='To Customer')
     status: CommenceString | None = Field(None, alias='Status')
     invoice: CommencePath | None = Field(None, alias='Invoice')
     order_date: CommenceDateMaybe = Field(None, alias='Order Date')
+
+    @property
+    def customer1(self):
+        if not self.customers:
+            raise ValueError('No Customer')
+        return self.customers[0]

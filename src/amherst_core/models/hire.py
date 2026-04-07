@@ -37,7 +37,7 @@ class AmherstHire(AmherstOrderBase):
     def shipment(self) -> ShipmentDetails:
         return ShipmentDetails(
             recipient=self.delivery_full_contact,
-            reference=dated_name(self.customer[0], self.send_date),
+            reference=dated_name(self.customers[0], self.send_date),
             shipping_date=self.send_date,
             boxes=self.boxes,
         )

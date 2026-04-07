@@ -1,21 +1,16 @@
 from __future__ import annotations
 
-from typing import NamedTuple
+from pydantic import BaseModel
 
 
-class ContactBasic(NamedTuple):
+class Contact(BaseModel):
     name: str
-    business: str
     phone: str
     email: str
+    business: str = ''
 
 
-class AmherstAddress(NamedTuple):
-    address_str: str
-    postcode: str
-
-
-class AddressBasic(NamedTuple):
+class Address(BaseModel):
     address_lines: list[str]
     postcode: str
     town: str = ''
@@ -29,13 +24,13 @@ class AddressBasic(NamedTuple):
             return truncated
 
     @classmethod
-    def from_str_and_pc(cls, address_str, postcode) -> AddressBasic:
+    def from_str_and_pc(cls, address_str, postcode) -> Address:
         addr_lines = address_str.strip().splitlines()
         town = addr_lines.pop() if len(addr_lines) > 1 else ''
         used_lines = [_ for _ in addr_lines if _]
         return cls(address_lines=used_lines, postcode=postcode, town=town)
 
 
-class FullContact(NamedTuple):
-    contact: ContactBasic
-    address: AddressBasic
+class FullContact(BaseModel):
+    contact: Contact
+    address: Address

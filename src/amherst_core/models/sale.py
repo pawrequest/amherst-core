@@ -25,6 +25,6 @@ class AmherstSale(AmherstOrderBase):
     def shipment(self) -> ShipmentDetails:
         return ShipmentDetails(
             recipient=self.delivery_full_contact,
-            reference=dated_name(self.customer[0]),
+            reference=dated_name(self.customers[0]),
             shipping_date=date.today(),
         )

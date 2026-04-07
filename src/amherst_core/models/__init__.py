@@ -6,7 +6,7 @@ from .hire import AmherstHire
 from .sale import AmherstSale
 from .shipment import CommenceShipment
 from .shipment_details import ShipmentDetails
-from .contact_address import AddressBasic, ContactBasic, FullContact
+from .contact_address import Address, Contact, FullContact
 
 __all__ = [
     'register_table',
@@ -16,8 +16,8 @@ __all__ = [
     'AmherstSale',
     'CommenceShipment',
     'ShipmentDetails',
-    'AddressBasic',
-    'ContactBasic',
+    'Address',
+    'Contact',
     'FullContact',
     'AmherstShipableBase',
     'AmherstOrderBase',
