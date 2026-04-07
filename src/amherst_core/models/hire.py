@@ -1,18 +1,17 @@
 from datetime import date
 from typing import ClassVar
 
+from pycommence.core.meta import CommenceTable
 from pycommence.core.types import CommenceDateMaybe, CommenceString
 from pydantic import Field
 
 from amherst_core.consts_enums import CategoryName, HireStatus
-from amherst_core.models import register_table
 from amherst_core.models._shipable import AmherstOrderBase
 from amherst_core.models.shipment_details import ShipmentDetails
 from amherst_core.utils.text_and_date import dated_name
 
 
-@register_table
-class AmherstHire(AmherstOrderBase):
+class AmherstHire(AmherstOrderBase, CommenceTable):
     category: ClassVar[CategoryName] = CategoryName.Hire
     boxes: int = Field('', alias='Boxes')
     adict: dict = Field(default_factory=dict, alias='Adict')
@@ -40,4 +39,5 @@ class AmherstHire(AmherstOrderBase):
             reference=dated_name(self.customers[0], self.send_date),
             shipping_date=self.send_date,
             boxes=self.boxes,
+            context=self.model_dump(mode='json'),
         )

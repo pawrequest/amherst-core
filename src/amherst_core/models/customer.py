@@ -40,4 +40,5 @@ class AmherstCustomer(AmherstShipableBase, CommenceTable):
             recipient=self.delivery_full_contact,
             reference=dated_name(self.name),
             shipping_date=date.today(),
+            context=self.model_dump(mode='json'),
         )

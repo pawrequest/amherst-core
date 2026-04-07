@@ -21,12 +21,12 @@ dev = [
 
 [package.metadata]
 requires-dist = [
-    { name = "pycommence", git = "https://github.com/pawrequest/pycommence?branch=fapi" },
+    { name = "pycommence", editable = "../pycommence" },
     { name = "pydantic", specifier = ">=2.12.5" },
 ]
 
 [package.metadata.requires-dev]
-commence = [{ name = "pycommence", git = "https://github.com/pawrequest/pycommence?branch=fapi" }]
+commence = [{ name = "pycommence", editable = "../pycommence" }]
 dev = [{ name = "pytest", specifier = ">=9.0.2" }]
 
 [[package]]
@@ -90,11 +90,35 @@ wheels = [
 [[package]]
 name = "pycommence"
 version = "0.2.666"
-source = { git = "https://github.com/pawrequest/pycommence?branch=fapi#8d1425368d5c01cb832cb34495dc8cf74267df22" }
+source = { editable = "../pycommence" }
 dependencies = [
     { name = "loguru" },
     { name = "pydantic" },
     { name = "pywin32" },
+]
+
+[package.metadata]
+requires-dist = [
+    { name = "fastapi", marker = "extra == 'fastapi'", specifier = ">=0.128.0" },
+    { name = "httpx", marker = "extra == 'fastapi'", specifier = ">=0.28.1" },
+    { name = "loguru" },
+    { name = "pydantic" },
+    { name = "pywin32" },
+    { name = "uvicorn", marker = "extra == 'fastapi'", specifier = ">=0.40.0" },
+]
+provides-extras = ["fastapi"]
+
+[package.metadata.requires-dev]
+dev = [
+    { name = "autodoc-pydantic" },
+    { name = "myst-parser" },
+    { name = "pytest", specifier = ">=8.3.5" },
+    { name = "pytest-asyncio", specifier = ">=1.1.0" },
+    { name = "sphinx" },
+    { name = "sphinx-autodoc-typehints" },
+    { name = "sphinx-readme" },
+    { name = "sphinx-rtd-dark-mode" },
+    { name = "sphinx-rtd-theme" },
 ]
 
 [[package]]

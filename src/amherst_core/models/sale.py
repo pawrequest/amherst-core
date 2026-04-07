@@ -1,6 +1,7 @@
 from datetime import date
 from typing import ClassVar
 
+from pycommence.core.meta import CommenceTable
 from pycommence.core.types import CommenceDateMaybe, CommenceString
 from pydantic import Field
 
@@ -10,7 +11,7 @@ from amherst_core.models.shipment_details import ShipmentDetails
 from amherst_core.utils.text_and_date import dated_name
 
 
-class AmherstSale(AmherstOrderBase):
+class AmherstSale(AmherstOrderBase, CommenceTable):
     category: ClassVar[CategoryName] = CategoryName.Sale
     delivery_method: CommenceString | None = None
 
