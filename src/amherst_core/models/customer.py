@@ -34,7 +34,6 @@ class AmherstCustomer(AmherstShipableBase, CommenceTable):
     hires: CSVSpaces = Field('', alias='Has Hired Hires')
     sales: CSVSpaces = Field('', alias='Involves Sale')
 
-    @property
     def shipment(self) -> ShipmentDetails:
         return ShipmentDetails(
             recipient=self.delivery_full_contact,

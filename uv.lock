@@ -4,7 +4,7 @@ requires-python = ">=3.13"
 
 [[package]]
 name = "amherst-core"
-version = "0.1.0"
+version = "0.0.1"
 source = { editable = "." }
 dependencies = [
     { name = "pycommence" },
@@ -12,21 +12,17 @@ dependencies = [
 ]
 
 [package.dev-dependencies]
-commence = [
-    { name = "pycommence" },
-]
 dev = [
     { name = "pytest" },
 ]
 
 [package.metadata]
 requires-dist = [
-    { name = "pycommence", editable = "../pycommence" },
+    { name = "pycommence", specifier = ">=0.3.1" },
     { name = "pydantic", specifier = ">=2.12.5" },
 ]
 
 [package.metadata.requires-dev]
-commence = [{ name = "pycommence", editable = "../pycommence" }]
 dev = [{ name = "pytest", specifier = ">=9.0.2" }]
 
 [[package]]
@@ -89,36 +85,16 @@ wheels = [
 
 [[package]]
 name = "pycommence"
-version = "0.2.666"
-source = { editable = "../pycommence" }
+version = "0.3.1"
+source = { registry = "https://pypi.org/simple" }
 dependencies = [
     { name = "loguru" },
     { name = "pydantic" },
     { name = "pywin32" },
 ]
-
-[package.metadata]
-requires-dist = [
-    { name = "fastapi", marker = "extra == 'fastapi'", specifier = ">=0.128.0" },
-    { name = "httpx", marker = "extra == 'fastapi'", specifier = ">=0.28.1" },
-    { name = "loguru" },
-    { name = "pydantic" },
-    { name = "pywin32" },
-    { name = "uvicorn", marker = "extra == 'fastapi'", specifier = ">=0.40.0" },
-]
-provides-extras = ["fastapi"]
-
-[package.metadata.requires-dev]
-dev = [
-    { name = "autodoc-pydantic" },
-    { name = "myst-parser" },
-    { name = "pytest", specifier = ">=8.3.5" },
-    { name = "pytest-asyncio", specifier = ">=1.1.0" },
-    { name = "sphinx" },
-    { name = "sphinx-autodoc-typehints" },
-    { name = "sphinx-readme" },
-    { name = "sphinx-rtd-dark-mode" },
-    { name = "sphinx-rtd-theme" },
+sdist = { url = "https://files.pythonhosted.org/packages/9d/25/a5ff1f2654393090554a39b092add9a36e6edac934720d1384cabf9606b6/pycommence-0.3.1.tar.gz", hash = "sha256:bb51feac4267fb712b6090493b4304cf79cd38b3806aa577e1fa7aaa8beebbe6", size = 37299, upload-time = "2026-04-08T13:34:34.438Z" }
+wheels = [
+    { url = "https://files.pythonhosted.org/packages/fe/4c/87a0da9d7d316ee4bdc2a03dbeeb62f91377729e6f04e6720b6cab70707d/pycommence-0.3.1-py3-none-any.whl", hash = "sha256:6e7c0938959534cd5d472794b8ad9fc38d6b67c1c12b4a3a98c0e3a9e0b5d7e6", size = 52688, upload-time = "2026-04-08T13:34:33.374Z" },
 ]
 
 [[package]]

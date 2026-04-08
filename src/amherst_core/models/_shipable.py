@@ -37,7 +37,6 @@ class AmherstShipableBase(AmherstTable, ABC):
     def delivery_full_contact(self) -> FullContact:
         return FullContact(contact=self.delivery_contact, address=self.delivery_address)
 
-    @property
     @abstractmethod
     def shipment(self) -> ShipmentDetails: ...
 
