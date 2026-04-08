@@ -13,9 +13,9 @@ def now_iso_seconds() -> str:
     return datetime.now().isoformat(timespec='seconds')
 
 
-def ordinal_date_name(dt) -> str:
+def ordinal_date_name(dt, str='') -> str:
     """sortable and human readable dt eg '2024-June-1st (Saturday @ 14:30:00)'"""
-    return dt.strftime(f'%Y-%B-{ordinal_day(dt.day)} (%A @ %H:%M:%S)')
+    return f'{str + " - " if str else ""}' + dt.strftime(f'%Y-%B-{ordinal_day(dt.day)} (%A @ %H:%M:%S)')
 
 
 ordinal_date_name_now = partial(ordinal_date_name, datetime.now())
