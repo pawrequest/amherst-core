@@ -26,6 +26,8 @@ class CommenceShipmentAdd(AmherstBase):
     collection_id: CommenceString = Field('', alias='Collection ID')
     provider: CommenceString = Field('', alias='Provider')
     service: CommenceString = Field('', alias='Service')
+    contact_name: CommenceString = Field('', alias='Contact Name')
+    contact_email: CommenceString = Field('', alias='Contact Email')
 
     creation_datetime: CommenceString = Field(default_factory=now_iso_seconds, alias='Creation Datetime')
     name: CommenceString = Field(default_factory=ordinal_date_name, alias='Name')
