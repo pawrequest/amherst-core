@@ -27,4 +27,3 @@ def test_generate_table(test_client_non_tutorial):
 
     obj = clz.model_validate(row.data)
     assert obj.__class__.__name__ == 'Partial' + category
-    ...

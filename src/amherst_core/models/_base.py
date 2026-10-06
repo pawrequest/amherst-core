@@ -8,7 +8,6 @@ from pydantic import BaseModel, ConfigDict, Field
 
 from amherst_core.consts_enums import CategoryName
 
-
 AmherstModelConfig = ConfigDict(
     populate_by_name=True,
     use_enum_values=True,

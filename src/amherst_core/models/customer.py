@@ -1,9 +1,10 @@
 from datetime import date
 from typing import ClassVar
 
-from pycommence.core.types import CSVSpaces, CommenceDateMaybe, CommenceString
-from pydantic import Field
 from pycommence.core.meta import CommenceTable
+from pycommence.core.types import CommenceDateMaybe, CommenceString, CSVSpaces
+from pydantic import Field
+
 from amherst_core.consts_enums import CategoryName
 from amherst_core.models._shipable import AmherstShipableBase
 from amherst_core.models.shipment_details import ShipmentDetails

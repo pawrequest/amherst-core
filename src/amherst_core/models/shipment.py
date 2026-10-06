@@ -4,11 +4,11 @@ from typing import ClassVar
 
 from pycommence.core.meta import CommenceTable
 from pycommence.core.types import (
-    CSVLines,
-    CSVSpaces,
     CommenceDateMaybe,
     CommencePath,
     CommenceString,
+    CSVLines,
+    CSVSpaces,
 )
 from pydantic import Field
 

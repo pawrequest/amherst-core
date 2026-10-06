@@ -13,4 +13,3 @@ if __name__ == '__main__':
     with PyCommenceClient('Customer') as pycmc:
         testy = pycmc.cursor().read_row(pk='Test')
         test_customer = AmherstCustomer(**testy.data)
-        ...

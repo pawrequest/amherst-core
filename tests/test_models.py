@@ -43,7 +43,6 @@ def pycmc_client_non_tutorial():
         yield client
 
 
-#
 @pytest.fixture(scope='function')
 def amherst_customer_data(pycmc_client_non_tutorial):
     yield pycmc_client_non_tutorial.cursor('Customer').read_row(pk='Test')

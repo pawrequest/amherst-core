@@ -25,7 +25,6 @@ def amherst_customer(amherst_customer_data) -> AmherstCustomer:
 def test_it():
     cust = AmherstCustomer
     assert cust.model_fields['name'].alias == 'Name'
-    ...
 
 
 def test_amherst_hire(amherst_customer: AmherstCustomer):
